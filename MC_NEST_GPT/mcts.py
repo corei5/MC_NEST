@@ -102,7 +102,7 @@ class MCTSr(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int = IMPORTANCE_SAMPLING
+    selection_policy: int = GREEDY #PAIRWISE_IMPORTANCE_SAMPLING #GREEDY #IMPORTANCE_SAMPLING
     initialize_strategy: int = ZERO_SHOT
 
     root: Node = Node(answer="I don't know.")
@@ -310,25 +310,6 @@ class MCTSrGPT4o(MCTSr):
             answer=f"{refined_answer.thought}\n\n# Answer\n{refined_answer.answer}",
             parent=node,
         )
-    
-        # Validate and extract the single float from the response
-        try:
-            # Handle case where the answer is a list and select the first element
-            # refined_answer_json = RefineResponse.model_validate_json(refined_answer_content)
-            # answer = refined_answer_json.answer
-            refined_answer_json = json.loads(refined_answer_content)  
-            answer = refined_answer_json.answer 
-            if isinstance(answer, list):
-                # If the answer is a list, choose the first item
-                answer = answer[0]  # or handle this according to your logic
-        except ValueError as e:
-            print(f"Error processing the refined answer: {e}")
-            answer = 0.0  # default or error handling value
-    
-        return Node(
-            answer=f"{refined_answer_json.thought}\n\n# Answer\n{answer}",
-            parent=node,
-        )
 
     def _evaluate_answer(self, node: Node) -> int:
         messages = [
@@ -371,3 +352,16 @@ class MCTSrGPT4o(MCTSr):
                 )
                 if attempt == 2:
                     raise
+
+
+def print_tree(node: Node | None, level: int = 0):
+    if node is None:
+        return
+    indent = " " * level * 2
+    node_str = repr(node)
+    for line in node_str.split("\n"):
+        print(indent + line)
+        #file.write(str(indent + line))
+    for child in node.children:
+        print_tree(child, level + 1)
+        #file.write(child, level + 1)
