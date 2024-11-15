@@ -310,7 +310,7 @@ class MCTSrGPT4o(MCTSr):
             # Handle case where the answer is a list and select the first element
             # refined_answer_json = RefineResponse.model_validate_json(refined_answer_content)
             # answer = refined_answer_json.answer
-            refined_answer_json = json.loads(refined_answer)  
+            refined_answer_json = json.loads(refined_answer_content)  
             answer = refined_answer_json.answer 
             if isinstance(answer, list):
                 # If the answer is a list, choose the first item
