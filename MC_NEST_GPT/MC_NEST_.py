@@ -15,19 +15,9 @@ from openai import OpenAI
 import json
 
 def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
-    #***CHANGE***: Remove OpenAI(api_key='') initialization 
-    #client = OpenAI(api_key='')
-    #***CHANGE***: Use the api_key argument instead
     client = OpenAI(api_key=openai.api_key) 
     response = client.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
     return response
-
-# def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
-#     # Remove the line creating a new client with empty key:
-#     # client = OpenAI(api_key='') 
-#     # Use the globally set api key instead:
-#     response = openai.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
-#     return response
 
 class RefineResponse(BaseModel):
     thought: str = Field(..., description="The thought process behind the answer.")
@@ -102,8 +92,8 @@ class MC_NEST(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int #= IMPORTANCE_SAMPLING
-    initialize_strategy: int #= ZERO_SHOT
+    selection_policy: int 
+    initialize_strategy: int 
 
     def __init__(self, **data):
         super().__init__(**data)
