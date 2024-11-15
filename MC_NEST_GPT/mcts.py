@@ -258,68 +258,68 @@ class MCTSrGPT4o(MCTSr):
         return response.choices[0].message.content
 
     def self_refine(self, node: Node) -> Node:
-    critique_response = openai_chat_completion(
-        messages=[
-            {
-                "role": "system",
-                "content": self.critic_system_prompt,
-            },
-            {
-                "role": "user",
-                "content": "\n\n".join(
-                    [
-                        f"<problem>\n{self.problem}\n</problem>",
-                        f"<current_answer>\n{node.answer}\n</current_answer>",
-                    ]
-                ),
-            },
-        ],
-        model=self.model,
-        temperature=0.90,
-        max_tokens=4000,
-    )
-    critique = critique_response.choices[0].message.content
-    assert critique is not None
-    refined_answer_response = openai_chat_completion(
-        messages=[
-            {
-                "role": "system",
-                "content": self.refine_system_prompt,
-            },
-            {
-                "role": "user",
-                "content": "\n\n".join(
-                    [
-                        f"<problem>\n{self.problem}\n</problem>",
-                        f"<current_answer>\n{node.answer}\n</current_answer>",
-                        f"<critique>\n{critique}\n</critique>",
-                    ]
-                ),
-            },
-        ],
-        model=self.model,
-        temperature=0.90,
-        max_tokens=4000,
-        response_format={"type": "json_object"},
-    )
-    refined_answer_content = refined_answer_response.choices[0].message.content
-
-    # Validate and extract the single float from the response
-    try:
-        # Handle case where the answer is a list and select the first element
-        refined_answer_json = RefineResponse.model_validate_json(refined_answer_content)
-        answer = refined_answer_json.answer
-        if isinstance(answer, list):
-            # If the answer is a list, choose the first item
-            answer = answer[0]  # or handle this according to your logic
-    except ValueError as e:
-        print(f"Error processing the refined answer: {e}")
-        answer = 0.0  # default or error handling value
-
-    return Node(
-        answer=f"{refined_answer_json.thought}\n\n# Answer\n{answer}",
-        parent=node,
-    )
+        critique_response = openai_chat_completion(
+            messages=[
+                {
+                    "role": "system",
+                    "content": self.critic_system_prompt,
+                },
+                {
+                    "role": "user",
+                    "content": "\n\n".join(
+                        [
+                            f"<problem>\n{self.problem}\n</problem>",
+                            f"<current_answer>\n{node.answer}\n</current_answer>",
+                        ]
+                    ),
+                },
+            ],
+            model=self.model,
+            temperature=0.90,
+            max_tokens=4000,
+        )
+        critique = critique_response.choices[0].message.content
+        assert critique is not None
+        refined_answer_response = openai_chat_completion(
+            messages=[
+                {
+                    "role": "system",
+                    "content": self.refine_system_prompt,
+                },
+                {
+                    "role": "user",
+                    "content": "\n\n".join(
+                        [
+                            f"<problem>\n{self.problem}\n</problem>",
+                            f"<current_answer>\n{node.answer}\n</current_answer>",
+                            f"<critique>\n{critique}\n</critique>",
+                        ]
+                    ),
+                },
+            ],
+            model=self.model,
+            temperature=0.90,
+            max_tokens=4000,
+            response_format={"type": "json_object"},
+        )
+        refined_answer_content = refined_answer_response.choices[0].message.content
+    
+        # Validate and extract the single float from the response
+        try:
+            # Handle case where the answer is a list and select the first element
+            refined_answer_json = RefineResponse.model_validate_json(refined_answer_content)
+            answer = refined_answer_json.answer
+            if isinstance(answer, list):
+                # If the answer is a list, choose the first item
+                answer = answer[0]  # or handle this according to your logic
+        except ValueError as e:
+            print(f"Error processing the refined answer: {e}")
+            answer = 0.0  # default or error handling value
+    
+        return Node(
+            answer=f"{refined_answer_json.thought}\n\n# Answer\n{answer}",
+            parent=node,
+        )
 
     def _evaluate_answer(self, node: Node) -> int:
         messages = [
