@@ -12,17 +12,17 @@ from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 from pydantic import BaseModel, Field
 import openai
 
-# def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
-#     client = OpenAI(api_key='')
-#     response = client.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
-#     return response
-
 def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
-    # Remove the line creating a new client with empty key:
-    # client = OpenAI(api_key='') 
-    # Use the globally set api key instead:
-    response = openai.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
+    client = OpenAI(api_key='')
+    response = client.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
     return response
+
+# def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
+#     # Remove the line creating a new client with empty key:
+#     # client = OpenAI(api_key='') 
+#     # Use the globally set api key instead:
+#     response = openai.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
+#     return response
 
 class RefineResponse(BaseModel):
     thought: str = Field(..., description="The thought process behind the answer.")
