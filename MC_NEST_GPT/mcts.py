@@ -94,7 +94,7 @@ ZERO_SHOT = 1
 DUMMY_ANSWER = 2
 
 
-class MCTSr(BaseModel):
+class MC_NEST(BaseModel):
     problem: str
     max_rollouts: int
     exploration_constant: float = 1.0
@@ -220,7 +220,7 @@ class MCTSr(BaseModel):
 
 
 
-class MCTSrGPT4o(MCTSr):
+class MC_NEST_gpt4o(MC_NEST):
     model: ClassVar[str]
     critic_system_prompt: ClassVar[str]
     refine_system_prompt: ClassVar[str]
