@@ -102,10 +102,15 @@ class MCTSr(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int = IMPORTANCE_SAMPLING #PAIRWISE_IMPORTANCE_SAMPLING #GREEDY #IMPORTANCE_SAMPLING
+    selection_policy: int
     initialize_strategy: int = ZERO_SHOT
 
     root: Node = Node(answer="I don't know.")
+
+    def __init__(self, **data):
+        super().__init__(**data)
+        if self.selection_policy not in [GREEDY, IMPORTANCE_SAMPLING, PAIRWISE_IMPORTANCE_SAMPLING]:
+            raise ValueError(f"Invalid selection policy: {self.selection_policy}")
 
     def self_refine(self, node: Node) -> Node:
         raise NotImplementedError()
@@ -158,34 +163,22 @@ class MCTSr(BaseModel):
         nash_equilibrium_strategy = self.calculate_nash_equilibrium_strategy()
 
         if self.selection_policy == GREEDY:
-
-            print("................GREEDY............")            
-
+            print("................GREEDY............")
             candidate_scores = [(self.uct(node), nash_equilibrium_strategy.get(node, 0)) for node in candidates]
             chosen_node = max(candidates, key=lambda node: candidate_scores[candidates.index(node)][0] + candidate_scores[candidates.index(node)][1])
             return chosen_node
 
         elif self.selection_policy == IMPORTANCE_SAMPLING:
-            
             print("................IMPORTANCE_SAMPLING............")
-
             uct_scores = [self.uct(node) for node in candidates]
-
-            #print(uct_scores)
-
             weights = [uct_scores[i] * nash_equilibrium_strategy.get(node, 0) for i, node in enumerate(candidates)]
-
-            #print(weights)
-
             if sum(weights) <= 0:  # Handle case where all weights are zero or negative
                 return random.choice(candidates)
             selected_node = random.choices(candidates, weights=weights, k=1)[0]
             return selected_node
 
         elif self.selection_policy == PAIRWISE_IMPORTANCE_SAMPLING:
-
             print("...............PAIRWISE_IMPORTANCE_SAMPLING...........")
-
             uct_scores = [self.uct(node) for node in candidates]
             pairs = [(i, j) for i in range(len(candidates)) for j in range(i + 1, len(candidates))]
             pair_weights = [abs(uct_scores[i] - uct_scores[j]) * nash_equilibrium_strategy.get(candidates[i], 0) * nash_equilibrium_strategy.get(candidates[j], 0) for i, j in pairs]
@@ -229,6 +222,7 @@ class MCTSr(BaseModel):
                 best_node = current_node
             to_visit.extend(current_node.children)
         return best_node.answer
+
 
 
 class MCTSrGPT4o(MCTSr):
