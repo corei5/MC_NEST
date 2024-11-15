@@ -102,15 +102,10 @@ class MCTSr(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int
+    selection_policy: int = IMPORTANCE_SAMPLING
     initialize_strategy: int = ZERO_SHOT
 
     root: Node = Node(answer="I don't know.")
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        if self.selection_policy not in [GREEDY, IMPORTANCE_SAMPLING, PAIRWISE_IMPORTANCE_SAMPLING]:
-            raise ValueError(f"Invalid selection policy: {self.selection_policy}")
 
     def self_refine(self, node: Node) -> Node:
         raise NotImplementedError()
