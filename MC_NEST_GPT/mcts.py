@@ -10,8 +10,7 @@ import numpy as np
 from typing import ClassVar
 from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 from pydantic import BaseModel, Field
-from openai import OpenAI
-
+import openai
 
 # def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
 #     client = OpenAI(api_key='')
