@@ -1,7 +1,7 @@
 # mcts/mcts.py
-
 from __future__ import annotations
-import pandas as pd
+
+import pandas as pd 
 import random
 import math
 from collections import deque
@@ -10,7 +10,7 @@ import numpy as np
 from typing import ClassVar
 from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 from pydantic import BaseModel, Field
-import openai as OpenAI
+from openai import OpenAI
 
 def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
     client = OpenAI(api_key='')
