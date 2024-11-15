@@ -105,6 +105,11 @@ class MC_NEST(BaseModel):
     selection_policy: int = IMPORTANCE_SAMPLING
     initialize_strategy: int = ZERO_SHOT
 
+    def __init__(self, **data):
+        super().__init__(**data)
+        if "selection_policy" in data:
+            self.selection_policy = data["selection_policy"]
+
     root: Node = Node(answer="I don't know.")
 
     def self_refine(self, node: Node) -> Node:
