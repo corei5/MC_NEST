@@ -102,8 +102,8 @@ class MC_NEST(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int = IMPORTANCE_SAMPLING
-    initialize_strategy: int = ZERO_SHOT
+    selection_policy: int #= IMPORTANCE_SAMPLING
+    initialize_strategy: int #= ZERO_SHOT
 
     def __init__(self, **data):
         super().__init__(**data)
