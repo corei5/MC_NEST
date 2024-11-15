@@ -303,7 +303,13 @@ class MCTSrGPT4o(MCTSr):
             max_tokens=4000,
             response_format={"type": "json_object"},
         )
-        refined_answer_content = refined_answer_response.choices[0].message.content
+        refined_answer = RefineResponse.model_validate_json(
+            refined_answer_response.choices[0].message.content
+        )
+        return Node(
+            answer=f"{refined_answer.thought}\n\n# Answer\n{refined_answer.answer}",
+            parent=node,
+        )
     
         # Validate and extract the single float from the response
         try:
