@@ -102,7 +102,7 @@ class MCTSr(BaseModel):
     epsilon: float = 1e-10
     reward_limit: int = 95
     excess_reward_penalty: int = 5
-    selection_policy: int = GREEDY #PAIRWISE_IMPORTANCE_SAMPLING #GREEDY #IMPORTANCE_SAMPLING
+    selection_policy: int = IMPORTANCE_SAMPLING #PAIRWISE_IMPORTANCE_SAMPLING #GREEDY #IMPORTANCE_SAMPLING
     initialize_strategy: int = ZERO_SHOT
 
     root: Node = Node(answer="I don't know.")
