@@ -13,7 +13,10 @@ from pydantic import BaseModel, Field
 from openai import OpenAI
 
 def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
-    client = OpenAI(api_key='')
+    #***CHANGE***: Remove OpenAI(api_key='') initialization 
+    #client = OpenAI(api_key='')
+    #***CHANGE***: Use the api_key argument instead
+    client = OpenAI(api_key=openai.api_key) 
     response = client.chat.completions.create(model=model, messages=messages, temperature=temperature, **kwargs)
     return response
 
