@@ -1,0 +1,7 @@
+# requirements.txt
+openai
+pydantic
+numpy
+pandas
+tqdm
+
