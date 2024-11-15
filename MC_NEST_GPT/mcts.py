@@ -12,6 +12,7 @@ from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 from pydantic import BaseModel, Field
 import openai
 from openai import OpenAI
+import json
 
 def openai_chat_completion(messages: list[ChatCompletionMessageParam], model: str, temperature: float, **kwargs) -> ChatCompletion:
     #***CHANGE***: Remove OpenAI(api_key='') initialization 
