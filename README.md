@@ -11,6 +11,9 @@ MC_NEST is a **Monte Carlo Tree Search** framework enhanced with **GPT-4** desig
 - **GPT-4 Integration**: Harness the reasoning power of GPT-4 to solve and refine mathematical problems.
 - **Monte Carlo Tree Search (MCTS)**: An advanced implementation of MCTS with configurable selection policies and initialization strategies.
 - **Multi-Agent Critique & Refinement**: GPT-based agents for answer refinement and critique through structured JSON responses.
+- - **Customizable Initialize Strategy**:
+  - **ZERO SHOT**
+  - **DUMMY ANSWER**
 - **Customizable Selection Policies**:
   - **GREEDY**
   - **IMPORTANCE SAMPLING**
@@ -74,14 +77,13 @@ IMPORTANCE_SAMPLING = 2
 PAIRWISE_IMPORTANCE_SAMPLING = 3
 ```
 
-## References
-
-[1] Zhang, D., Li, J., Huang, X., Zhou, D., Li, Y., & Ouyang, W. (2024). Accessing GPT-4 level Mathematical Olympiad Solutions via Monte Carlo Tree Self-refine with LLaMa-3 8B. arXiv preprint arXiv:2406.07394. 
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for major changes.
 
 ## License
+
+This project is licensed under the MIT License.
 
 ## 📄 Citation
 
@@ -100,6 +102,10 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ```
 
-This project is licensed under the MIT License.
+## References
+
+[1] Zhang, D., Li, J., Huang, X., Zhou, D., Li, Y., & Ouyang, W. (2024). Accessing GPT-4 level Mathematical Olympiad Solutions via Monte Carlo Tree Self-refine with LLaMa-3 8B. arXiv preprint arXiv:2406.07394. 
+
+
 
 Happy coding! 🚀
