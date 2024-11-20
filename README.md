@@ -19,7 +19,7 @@ MC_NEST is a **Monte Carlo Tree Search** framework enhanced with **GPT-4** desig
   - **IMPORTANCE SAMPLING**
   - **PAIRWISE IMPORTANCE SAMPLING**
 - **Reward System**: Uses strict GPT-based evaluation with penalties for overestimation.
-- **Visualization**: Built-in tree-printing utility to debug and analyze the MCTS process.
+- **Visualization**: Built-in tree-printing utility to debug and analyze the MC_NEST process.
 
 ## Installation
 
@@ -50,7 +50,7 @@ openai.api_key = 'your_openai_api_key'
 
 ## Initialize and Run MC_NEST
 
-Define your problem, configure MCTS settings, and execute:
+Define your problem, configure MC_NEST settings, and execute:
 
 ```bash
 GREEDY = 1
@@ -63,7 +63,7 @@ DUMMY_ANSWER = 2
 problem = "Let $S$ be a list of positive integers not necessarily distinct in which the number $68$ appears. The average (arithmetic mean) of the numbers in $S$ is $56$. However, if $68$ is removed, the average of the remaining numbers drops to $55$. What is the largest number that can appear in $S$?"
 MC_NEST = MC_NEST_gpt4o(problem=problem, max_rollouts=4, selection_policy = IMPORTANCE_SAMPLING, initialize_strategy = ZERO_SHOT)
 
-# Run MCTS to get the best answer
+# Run MC_NEST to get the best answer
 best_answer = MC_NEST.run()
 print(best_answer)
 ```
