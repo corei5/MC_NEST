@@ -11,7 +11,7 @@ MC_NEST is a **Monte Carlo Tree Search** framework enhanced with **GPT-4** desig
 - **GPT-4 Integration**: Harness the reasoning power of GPT-4 to solve and refine mathematical problems.
 - **Monte Carlo Tree Search (MCTS)**: An advanced implementation of MCTS with configurable selection policies and initialization strategies.
 - **Multi-Agent Critique & Refinement**: GPT-based agents for answer refinement and critique through structured JSON responses.
-- - **Customizable Initialize Strategy**:
+- **Customizable Initialize Strategy**:
   - **ZERO SHOT**
   - **DUMMY ANSWER**
 - **Customizable Selection Policies**:
