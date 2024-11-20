@@ -1,4 +1,4 @@
-# MC-NEST-GPT
+# MC-NEST
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
