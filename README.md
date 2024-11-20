@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![OpenAI API](https://img.shields.io/badge/OpenAI-GPT--4-blue)](https://platform.openai.com/)
 
-MC_NEST_GPT is a **Monte Carlo Tree Search (MCTS)** framework enhanced with **GPT-4** capabilities for solving complex mathematical problems. The framework leverages the **GPT-4O** API to refine, evaluate, and improve answers iteratively using **Nash Equilibrium-based exploration strategies** and **importance sampling techniques**.
+MC_NEST is a **Monte Carlo Tree Search** framework enhanced with **GPT-4** designed to tackle complex mathematical problems. Inspired by the principles of Monte Carlo Tree Self-Refinement [1], MC_NEST represents a powerful fusion of AI-driven reasoning and algorithmic precision. The framework leverages the **GPT-4** API to refine, evaluate, and improve answers iteratively using **Nash Equilibrium-based exploration strategies** and **importance sampling techniques**.
 
 ## Features
 
@@ -74,10 +74,31 @@ PAIRWISE_IMPORTANCE_SAMPLING = 3
 
 ```
 
+## References
+
+[1] Zhang, D., Li, J., Huang, X., Zhou, D., Li, Y., & Ouyang, W. (2024). Accessing GPT-4 level Mathematical Olympiad Solutions via Monte Carlo Tree Self-refine with LLaMa-3 8B. arXiv preprint arXiv:2406.07394. 
+
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for major changes.
 
 ## License
+
+## 📄 Citation
+
+```bash
+
+@article{YourCitationKey,
+  author    = {Your Name and Co-author(s)},
+  title     = {Title of Your Paper},
+  journal   = {Journal Name or arXiv},
+  year      = {Year},
+  volume    = {Volume (if applicable)},
+  number    = {Number (if applicable)},
+  pages     = {Pages (if applicable)},
+  doi       = {DOI or URL},
+}
+
+```
 
 This project is licensed under the MIT License.
 
