@@ -50,18 +50,19 @@ openai.api_key = 'your_openai_api_key'
 Define your problem, configure MCTS settings, and execute:
 
 ```bash
+GREEDY = 1
+IMPORTANCE_SAMPLING = 2
+PAIRWISE_IMPORTANCE_SAMPLING = 3
+ZERO_SHOT = 1
+DUMMY_ANSWER = 2
+
+# Initialize MC_NEST with a problem, number of rollouts, and selection policy
 problem = "Let $S$ be a list of positive integers not necessarily distinct in which the number $68$ appears. The average (arithmetic mean) of the numbers in $S$ is $56$. However, if $68$ is removed, the average of the remaining numbers drops to $55$. What is the largest number that can appear in $S$?"
+MC_NEST = MC_NEST_gpt4o(problem=problem, max_rollouts=4, selection_policy = IMPORTANCE_SAMPLING, initialize_strategy = ZERO_SHOT)
 
-MC_NEST = MC_NEST_gpt4o(
-    problem=problem,
-    max_rollouts=4,
-    selection_policy=IMPORTANCE_SAMPLING,
-    initialize_strategy=ZERO_SHOT
-)
-
+# Run MCTS to get the best answer
 best_answer = MC_NEST.run()
 print(best_answer)
-
 ```
 ## Customize Selection Policies
 
@@ -71,7 +72,6 @@ Choose from multiple selection policies:
 GREEDY = 1
 IMPORTANCE_SAMPLING = 2
 PAIRWISE_IMPORTANCE_SAMPLING = 3
-
 ```
 
 ## References
