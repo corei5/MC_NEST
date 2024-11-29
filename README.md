@@ -89,15 +89,11 @@ This project is licensed under the MIT License.
 
 ```bash
 
-@article{YourCitationKey,
-  author    = {Your Name and Co-author(s)},
-  title     = {Title of Your Paper},
-  journal   = {Journal Name or arXiv},
-  year      = {Year},
-  volume    = {Volume (if applicable)},
-  number    = {Number (if applicable)},
-  pages     = {Pages (if applicable)},
-  doi       = {DOI or URL},
+@article{rabby2024mc,
+  title={MC-NEST--Enhancing Mathematical Reasoning in Large Language Models with a Monte Carlo Nash Equilibrium Self-Refine Tree},
+  author={Rabby, Gollam and Keya, Farhana and Zamil, Parvez and Auer, S{\"o}ren},
+  journal={arXiv preprint arXiv:2411.15645},
+  year={2024}
 }
 
 ```
