@@ -90,8 +90,8 @@ This project is licensed under the MIT License.
 ```bash
 
 @article{rabby2024mc,
-  title={MC-NEST--Enhancing Mathematical Reasoning in Large Language Models with a Monte Carlo Nash Equilibrium Self-Refine Tree},
-  author={Rabby, Gollam and Keya, Farhana and Zamil, Parvez and Auer, S{\"o}ren},
+  title={MC-NEST: Enhancing Mathematical Reasoning in Large Language Models leveraging a Monte Carlo Self-Refine Tree},
+  author={Rabby, Gollam and Keya, Farhana and Auer, S{\"o}ren},
   journal={arXiv preprint arXiv:2411.15645},
   year={2024}
 }
